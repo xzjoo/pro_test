@@ -1,0 +1,59 @@
+git的本地操作工作流程：
+  1.工作区
+  2.暂存区
+  3.git仓库
+
+///////////////////////////////
+在首次使用git时需要进行全局设置
+  git config --global user.name "用户名"
+  git config --global user.email "邮箱"
+
+///////////////////////////////
+创建仓库
+  1.创建一个空文件夹
+  2.进入到该文件夹
+  3.git仓库的一个初始化
+    git init
+    会创建一个隐藏的.git文件夹，不能更改
+  4.常用指令
+    git status 查看当前状态
+    git add <文件名>  添加到缓存区
+    git commit -m "注释"
+  5.退回版本（时光穿梭机）
+    1.查看版本，确定需要回到到时间点
+      -git log
+      or
+      -git log --pretty=online
+    2.回退
+      git reset --hard 提交编号
+    git reflog 查看历史操作记录
+
+///////////////////////////////
+Github远程创建仓库
+  两种常规的使用方式
+    1.基于http协议
+      -在桌面创建目录，并进入目录
+      -使用clone指令克隆线上仓库到本地
+        git clone 线上仓库地址
+      -后续操作：
+        -讲文件提交到本地暂存区
+          git add '文件名'
+        -提交到本地仓库
+          git commot -m "注释"
+        -提交到线上仓库(可能会出现权限错误，需要在.git/config文件中修改url http://xzjoo:20010403xu@git......)
+          git push
+        拉取线上版本
+          git pull
+    2.基于ssh协议
+      与https协议的区别：只影响github对用户的身份鉴定方式
+      需要OpenSSH：生成公私钥对指令：ssh-keygen-t rsa-C "注册邮箱"
+      步骤：
+        生成客户端公私钥对文件
+        将公钥上传到GitHub上
+///////////////////////////////
+  分支操作：
+    git branch 查看分支
+    git branch 分支名   创建分支
+    git checkout 分支名     切换分支
+    git branch-d 分支名     删除分支
+    git merge 被合并的分支名    合并分支
